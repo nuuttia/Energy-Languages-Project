@@ -13,6 +13,8 @@ def file_exists(file_path):
 
 def main():
   for root, dirs, files in os.walk(path):
+    if(directory_to_search!="" and directory_to_search not in root):
+      continue
     print('Checking ' + root)
     makefile = os.path.join(root, "Makefile")
     if file_exists(makefile):
@@ -38,8 +40,11 @@ def main():
         call(['sleep', '5'])
 
 if __name__ == '__main__':
-  if len(sys.argv) == 2:
+  if len(sys.argv) >= 2:
     act = sys.argv[1]
+    directory_to_search = ""
+    if len(sys.argv) >= 2:
+      directory_to_search = sys.argv[2]
     if (act == 'compile') | (act == 'run') | (act == 'clean') | (act == 'measure'):
       color_print('Performing \"' + act + '\" action...', color='yellow', bold=True)
       action = act
