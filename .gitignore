@@ -5,4 +5,4 @@ tmp.*
 *.class
 lshw
 sysinfo.*
-
+/C/**/*.gcc_run
