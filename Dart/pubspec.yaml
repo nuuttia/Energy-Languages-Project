@@ -1,0 +1,11 @@
+name: dart_energy_usage_efficiency
+description: >-
+  Package created for measuring dart energy usage efficiency.
+version: 1.0.0
+
+environment:
+  sdk: 1.24.0-dev.0.0
+
+dependencies:
+  args: any
+  bignum: any
