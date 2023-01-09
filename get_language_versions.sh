@@ -42,3 +42,16 @@ sudo make install
 cd ..
 rm -r luarocks-3.9.2
 sudo luarocks install c-gmp
+
+#Installing c++ boost library
+wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.gz
+sudo tar -xf boost_1_81_0.tar.gz -C /usr/local
+rm boost_1_81_0.tar.gz
+
+# Java library fastutil (must have ant installed)
+cd Java/k-nucleotide
+git clone https://github.com/vigna/fastutil.git
+cd fastutil
+make sources
+ant jar
+cd ../../..
