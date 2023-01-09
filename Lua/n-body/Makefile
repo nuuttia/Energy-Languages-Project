@@ -2,13 +2,13 @@ compile:
 
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "lua  nbody.lua-2.lua 50000000" Lua n-body
+	sudo ../../RAPL/main "~/lua_local/bin/lua  nbody.lua-2.lua 50000000" Lua n-body
 
 run:
-	lua  nbody.lua-2.lua 50000000
+	~/lua_local/bin/lua  nbody.lua-2.lua 50000000
 
 mem:
-	/usr/bin/time -v  lua  nbody.lua-2.lua 50000000
+	/usr/bin/time -v  ~/lua_local/bin/lua  nbody.lua-2.lua 50000000
 
 valgrind:
-	valgrind --tool=massif --stacks=yes  lua  nbody.lua-2.lua 50000000
+	valgrind --tool=massif --stacks=yes  ~/lua_local/bin/lua  nbody.lua-2.lua 50000000
