@@ -24,14 +24,14 @@ class Out {
     }
     flush(force: boolean) {
         if (this.ct > this.limit || force) {
-            process.stdout.write(this.buf.toString(ENCODING, 0, this.ct));
+            process.stdout.write(this.buf.toString("binary", 0, this.ct));
             this.ct = 0;
         }
     }
 }
 
 var IM = 139968, IA = 3877, IC = 29573, last = 42;
-var LINE_LEN = 60, NEW_LINE = 10, ENCODING = 'binary';
+var LINE_LEN = 60, NEW_LINE = 10, ENCODING = "binary";
 var out = new Out();
 
 function random(): number {
@@ -42,7 +42,7 @@ function random(): number {
 function repeat(alu: string, title: string, n : number): void {
     var len = alu.length, pos = 0;
     var buffer = new Buffer(alu + alu.substr(0, LINE_LEN), "ascii");
-    out.buf.write(title, out.ct, title.length, ENCODING);
+    out.buf.write(title, out.ct, title.length, "binary");
     out.ct += title.length;
     out.buf[out.ct++] = NEW_LINE;
     while (n) {
@@ -67,7 +67,7 @@ function make_cumulative(ac: Freq[]): void {
 
 function randomize(ac: Freq[], title: string, n: number): void {
     var len = alu.length, pos = 0;
-    out.buf.write(title, out.ct, title.length, ENCODING);
+    out.buf.write(title, out.ct, title.length, "binary");
     out.ct += title.length;
     out.buf[out.ct++] = NEW_LINE;
     while (n) {

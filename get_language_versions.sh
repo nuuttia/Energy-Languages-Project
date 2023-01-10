@@ -79,3 +79,8 @@ cd fpc-3.2.2.x86_64-linux
 sudo ./install.sh
 cd ..
 rm -rf fpc-3.2.2.x86_64-linux/
+
+# Typescript libraries
+npm install babel-cli
+npm install @types/node@latest
+npm i babel-plugin-transform-es2015-modules-commonjs

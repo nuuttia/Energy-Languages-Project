@@ -1,3 +1,4 @@
+"use strict";
 /* The Computer Language Benchmarks Game
    http://benchmarksgame.alioth.debian.org/
 
@@ -5,8 +6,12 @@
    based on Node.js version by Roman Pletnev
    which was in turn based on C/Dart programs by Petr Prokhorenkov/Jos Hirth et al.
  */
-"use strict";
+/// <reference path="../node_modules/@types/node/index.d.ts" />
 class Out {
+    out_buffer_size;
+    limit;
+    buf;
+    ct;
     constructor() {
         this.out_buffer_size = 256 * 1024;
         this.limit = this.out_buffer_size - 2 * LINE_LEN - 1;
@@ -15,13 +20,13 @@ class Out {
     }
     flush(force) {
         if (this.ct > this.limit || force) {
-            process.stdout.write(this.buf.toString(ENCODING, 0, this.ct));
+            process.stdout.write(this.buf.toString("binary", 0, this.ct));
             this.ct = 0;
         }
     }
 }
 var IM = 139968, IA = 3877, IC = 29573, last = 42;
-var LINE_LEN = 60, NEW_LINE = 10, ENCODING = 'binary';
+var LINE_LEN = 60, NEW_LINE = 10, ENCODING = "binary";
 var out = new Out();
 function random() {
     last = (last * IA + IC) % IM;
@@ -30,7 +35,7 @@ function random() {
 function repeat(alu, title, n) {
     var len = alu.length, pos = 0;
     var buffer = new Buffer(alu + alu.substr(0, LINE_LEN), "ascii");
-    out.buf.write(title, out.ct, title.length, ENCODING);
+    out.buf.write(title, out.ct, title.length, "binary");
     out.ct += title.length;
     out.buf[out.ct++] = NEW_LINE;
     while (n) {
@@ -55,7 +60,7 @@ function make_cumulative(ac) {
 }
 function randomize(ac, title, n) {
     var len = alu.length, pos = 0;
-    out.buf.write(title, out.ct, title.length, ENCODING);
+    out.buf.write(title, out.ct, title.length, "binary");
     out.ct += title.length;
     out.buf[out.ct++] = NEW_LINE;
     while (n) {
