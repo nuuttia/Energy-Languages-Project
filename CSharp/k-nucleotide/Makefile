@@ -1,16 +1,16 @@
 compile:
 	cp knucleotide.csharpcore-6.csharpcore Program.cs
-	/usr/bin/dotnet build -c Release
+	${HOME}/dotnet/dotnet build -c Release
 
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "/usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 0 < knucleotide-input25000000.txt" CSharp k-nucleotide
+	sudo ../../RAPL/main "${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 0 < ../../knucleotide-input25000000.txt" CSharp k-nucleotide
 
 run:
-	/usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 0 < knucleotide-input25000000.txt
+	${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 0 < ../../knucleotide-input25000000.txt
 
 mem:
-	/usr/bin/time -v /usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 0 < knucleotide-input25000000.txt
+	/usr/bin/time -v ${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 0 < ../../knucleotide-input25000000.txt
 
 valgrind:
-	valgrind --tool=massif --stacks=yes /usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 0 < knucleotide-input25000000.txt
+	valgrind --tool=massif --stacks=yes ${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 0 < ../../knucleotide-input25000000.txt

@@ -1,16 +1,16 @@
 compile:
 	cp pidigits.csharpcore-3.csharpcore Program.cs
-	/usr/bin/dotnet build -c Release
+	${HOME}/dotnet/dotnet build -c Release
 
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "/usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 10000" CSharp pidigits
+	sudo ../../RAPL/main "${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 10000" CSharp pidigits
 
 run:
-	/usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 10000
+	${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 10000
 
 mem:
-	/usr/bin/time -v  /usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 10000
+	/usr/bin/time -v  ${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 10000
 
 valgrind:
-	valgrind --tool=massif --stacks=yes  /usr/bin/dotnet ./bin/Release/netcoreapp1.1/tmp.dll 10000
+	valgrind --tool=massif --stacks=yes  ${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 10000

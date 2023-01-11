@@ -5,7 +5,7 @@ measure:
 	sudo ../../RAPL/main "php  mandelbrot.php-3.php 16000" PHP mandelbrot
 
 run:
-	php  mandelbrot.php-3.php 16000
+	php --enable-shmop mandelbrot.php-3.php 16000
 
 mem:
 	/usr/bin/time -v php  mandelbrot.php-3.php 16000
