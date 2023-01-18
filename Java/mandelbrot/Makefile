@@ -1,15 +1,15 @@
 compile:
 	cp mandelbrot.java-2.java mandelbrot.java
-	javac -d .  mandelbrot.java
+	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/javac -d .  mandelbrot.java
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "java   mandelbrot 16000" Java mandelbrot
+	sudo ../../RAPL/main "/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   mandelbrot 16000" Java mandelbrot
 
 run:
-	java   mandelbrot 16000
+	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   mandelbrot 16000
 
 mem:
-	/usr/bin/time -v java   mandelbrot 16000
+	/usr/bin/time -v /home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   mandelbrot 16000
 
 valgrind:
-	valgrind --tool=massif --stacks=yes java   mandelbrot 16000
+	valgrind --tool=massif --stacks=yes /home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   mandelbrot 16000

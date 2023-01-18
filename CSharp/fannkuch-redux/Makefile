@@ -1,16 +1,16 @@
 compile:
 	cp fannkuchredux.csharpcore-4.csharpcore Program.cs
-	${HOME}/dotnet/dotnet build -c Release
+	/usr/local/dotnet/dotnet build -c Release
 
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12" CSharp fannkuch-redux
+	sudo ../../RAPL/main "/usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12" CSharp fannkuch-redux
 
 run:
-	${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
+	/usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
 
 mem:
-	/usr/bin/time -v  ${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
+	/usr/bin/time -v  /usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
 
 valgrind:
-	valgrind --tool=massif --stacks=yes  ${HOME}/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
+	valgrind --tool=massif --stacks=yes  /usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12

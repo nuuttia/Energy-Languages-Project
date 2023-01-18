@@ -2,13 +2,13 @@ compile:
 
 xmeasure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "dart  pidigits.dart 2000" Dart pidigits
+	sudo ../../RAPL/main "/usr/local/dart-sdk/bin/dart  pidigits.dart 2000" Dart pidigits
 
 run:
-	dart  pidigits.dart 2000
+	/usr/local/dart-sdk/bin/dart  pidigits.dart 2000
 
 mem:
-	/usr/bin/time -v  dart  pidigits.dart 2000
+	/usr/bin/time -v  /usr/local/dart-sdk/bin/dart  pidigits.dart 2000
 
 valgrind:
-	valgrind --tool=massif --stacks=yes  dart  pidigits.dart 2000
+	valgrind --tool=massif --stacks=yes  /usr/local/dart-sdk/bin/dart  pidigits.dart 2000

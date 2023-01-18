@@ -1,14 +1,14 @@
 compile:
-	javac -d . -cp .:./fastutil/fastutil-8.5.11.jar knucleotide.java
+	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/javac -d . -cp .:./fastutil/fastutil-8.5.11.jar knucleotide.java
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < knucleotide-input25000000.txt" Java k-nucleotide
+	sudo ../../RAPL/main "/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < ../../knucleotide-input25000000.txt" Java k-nucleotide
 
 run:
-	java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < knucleotide-input25000000.txt
+	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < ../../knucleotide-input25000000.txt
 
 mem:
-	/usr/bin/time -v  java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < knucleotide-input25000000.txt
+	/usr/bin/time -v  /home/andremalheiro/Documentos/jdk1.8.0_121/bin/java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < ../../knucleotide-input25000000.txt
 
 valgrind:
-	valgrind --tool=massif --stacks=yes  java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < knucleotide-input25000000.txt
+	valgrind --tool=massif --stacks=yes  /home/andremalheiro/Documentos/jdk1.8.0_121/bin/java  -cp .:./fastutil/fastutil-8.5.11 knucleotide 0 < ../../knucleotide-input25000000.txt

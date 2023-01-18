@@ -2,13 +2,13 @@ compile:
 
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt" Dart regex-redux
+	sudo ../../RAPL/main "/usr/local/dart-sdk/bin/dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt" Dart regex-redux
 
 run:
-	dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt
+	/usr/local/dart-sdk/bin/dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt
 
 mem:
-	/usr/bin/time -v  dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt
+	/usr/bin/time -v  /usr/local/dart-sdk/bin/dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt
 
 valgrind:
-	valgrind --tool=massif --stacks=yes  dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt
+	valgrind --tool=massif --stacks=yes  /usr/local/dart-sdk/bin/dart  regexredux.dart-2.dart 0 < ../../regexredux-input5000000.txt

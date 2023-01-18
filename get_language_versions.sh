@@ -1,10 +1,32 @@
+# Downloading & Installing htslib.
+git clone https://github.com/samtools/htslib.git
+cd htslib/
+git submodule update --init --recursive
+autoreconf -i
+./configure
+make
+sudo make install
+cd ..
+rm -rf htslib
+
+#APR library
+curl https://dlcdn.apache.org//apr/apr-1.7.0.tar.gz --output apr.tar.gz
+tar -xf apr.tar.gz
+rm apr.tar.gz
+cd apr
+./configure
+make
+sudo make install
+cd ..
+rm -rf apr
+
 #JRuby 9.1.7.0
 curl https://repo1.maven.org/maven2/org/jruby/jruby-dist/9.1.7.0/jruby-dist-9.1.7.0-bin.tar.gz --output jruby.tar.gz
 sudo tar -xf jruby.tar.gz -C /usr/local/
 rm jruby.tar.gz
 
 #Ruby 2.7.0-preview1 was incompatible with current openssl version. Therefore, we used the current version available in the package manager dnf (ruby-3.1.3)
-# Also install ruby-dev package
+# Also install ruby-dev package using your OS packet manager
 #INstalling ruby gmp module
 gem install gmp
 
@@ -84,3 +106,8 @@ rm -rf fpc-3.2.2.x86_64-linux/
 npm install babel-cli
 npm install @types/node@latest
 npm i babel-plugin-transform-es2015-modules-commonjs
+
+#Dart 1.24.0-dev.0.0
+wget https://storage.googleapis.com/dart-archive/channels/dev/release/1.24.0-dev.0.0/sdk/dartsdk-linux-x64-release.zip
+sudo unzip dartsdk-linux-x64-release.zip -d /usr/local/
+

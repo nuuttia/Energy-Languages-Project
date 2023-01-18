@@ -2,13 +2,13 @@ compile:
 
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "dart  spectralnorm.dart 5500" Dart spectral-norm
+	sudo ../../RAPL/main "/usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500" Dart spectral-norm
 
 run:
-	dart  spectralnorm.dart 5500
+	/usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500
 
 mem:
-	/usr/bin/time -v dart  spectralnorm.dart 5500
+	/usr/bin/time -v /usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500
 
 valgrind:
-	valgrind --tool=massif --stacks=yes dart  spectralnorm.dart 5500
+	valgrind --tool=massif --stacks=yes /usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500

@@ -2,7 +2,7 @@ compile:
 
 measure:
 	sudo modprobe msr
-	sudo ../../RAPL/main "~/lua_local/bin/lua  mandelbrot.lua-6.lua 16000" Lua mandelbrot
+	sudo ../../RAPL/main "/home/andremalheiro/lua_local/bin/lua  mandelbrot.lua-6.lua 16000" Lua mandelbrot
 
 run:
 	~/lua_local/bin/lua  mandelbrot.lua-6.lua 16000
