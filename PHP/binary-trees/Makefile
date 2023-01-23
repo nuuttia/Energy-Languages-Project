@@ -1,8 +1,14 @@
-compile:
+php_8_path = /usr/local/php-8.2.1/bin/php
 
-measure:
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "php -n -d memory_limit=4096M binarytrees.php-5.php 21" PHP binary-trees
+	sudo ../../RAPL/main "php -n -d memory_limit=4096M binarytrees.php-5.php 21" PHP7 binary-trees
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${php_8_path} -n -d memory_limit=4096M binarytrees.php-5.php 21" PHP8 binary-trees
+
+compile:
 
 run:
 	php -n -d memory_limit=4096M binarytrees.php-5.php 21

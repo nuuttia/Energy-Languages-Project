@@ -1,9 +1,20 @@
-compile:
+java8_path = /home/andremalheiro/Documentos/jdk1.8.0_121/bin/
+
+compileOld:
 	cp fasta.java-5.java fasta.java
-	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/javac -d .  fasta.java
-measure:
+	${java8_path}javac -d .  fasta.java
+
+compileNew:
+	cp fasta.java-5.java fasta.java
+	javac -d .  fasta.java
+
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   fasta 25000000" Java fasta
+	sudo ../../RAPL/main "${java8_path}java fasta 25000000" Java8 fasta
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "java fasta 25000000" Java19 fasta
 
 run:
 	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   fasta 25000000

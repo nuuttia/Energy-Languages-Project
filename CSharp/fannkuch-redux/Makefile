@@ -1,16 +1,34 @@
-compile:
+dotnet6_path = /usr/local/dotnet-6.0.404/dotnet
+dotnet3_path = /usr/local/dotnet/dotnet
+
+compileNew:
+	rm -rf bin obj
 	cp fannkuchredux.csharpcore-4.csharpcore Program.cs
-	/usr/local/dotnet/dotnet build -c Release
+	cp ../csproj.new tmp.csproj
+	$(dotnet6_path) build -c Release
+	
+compileOld:
+	rm -rf bin obj
+	cp fannkuchredux.csharpcore-4.csharpcore Program.cs
+	cp ../csproj.old tmp.csproj
+	$(dotnet3_path) build -c Release
 
-measure:
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "/usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12" CSharp fannkuch-redux
+	sudo ../../RAPL/main "$(dotnet3_path) ./bin/Release/netcoreapp3.1/tmp.dll 12" CSharp3 fannkuch-redux
 
-run:
-	/usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "$(dotnet6_path) ./bin/Release/netcoreapp6.0/tmp.dll 12" CSharp6 fannkuch-redux
+
+runOld:
+	$(dotnet6_path) ./bin/Release/netcoreapp6.0/tmp.dll 12
+
+runOld:
+	$(dotnet3_path) ./bin/Release/netcoreapp3.1/tmp.dll 12
 
 mem:
-	/usr/bin/time -v  /usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
+	/usr/bin/time -v  $(dotnet3_path) ./bin/Release/netcoreapp3.1/tmp.dll 12
 
 valgrind:
-	valgrind --tool=massif --stacks=yes  /usr/local/dotnet/dotnet ./bin/Release/netcoreapp3.1/tmp.dll 12
+	valgrind --tool=massif --stacks=yes  $(dotnet3_path) ./bin/Release/netcoreapp3.1/tmp.dll 12

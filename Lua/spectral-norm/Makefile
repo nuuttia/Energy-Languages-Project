@@ -1,8 +1,16 @@
-compile:
+lua_5_3 = /usr/local/lua_local/bin/lua
+lua_5_4 = /usr/local/lua-5.4.4/bin/lua
 
-measure:
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "~/lua_local/bin/lua  spectralnorm.lua 5500" Lua spectral-norm
+	sudo ../../RAPL/main "${lua_5_3}  spectralnorm.lua 5500" Lua5_3 spectral-norm
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${lua_5_4}  spectralnorm.lua 5500" Lua5_4 spectral-norm
+
+
+compile:
 
 run:
 	~/lua_local/bin/lua  spectralnorm.lua 5500

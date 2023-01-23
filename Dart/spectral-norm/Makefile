@@ -1,14 +1,22 @@
-compile:
+dart1_path = /usr/local/dart-sdk/bin/dart
+dart2_path = /usr/local/new_dart_sdk/dart-sdk/bin/dart
 
-measure:
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "/usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500" Dart spectral-norm
+	sudo ../../RAPL/main "$(dart1_path) spectralnorm.dart 5500" Dart1 spectral-norm
 
-run:
-	/usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "$(dart2_path) spectralnorm.dart 5500" Dart2 spectral-norm
+
+runOld:
+	$(dart1_path)  spectralnorm.dart 5500
+
+runNew:
+	$(dart2_path)  spectralnorm.dart 5500
 
 mem:
-	/usr/bin/time -v /usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500
+	/usr/bin/time -v $(dart1_path)  spectralnorm.dart 5500
 
 valgrind:
-	valgrind --tool=massif --stacks=yes /usr/local/dart-sdk/bin/dart  spectralnorm.dart 5500
+	valgrind --tool=massif --stacks=yes $(dart1_path)  spectralnorm.dart 5500

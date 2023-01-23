@@ -1,8 +1,15 @@
-compile:
+php_8_path = /usr/local/php-8.2.1/bin/php
 
-measure:
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "php -d memory_limit=1024M knucleotide.php-4.php 0 < ../../knucleotide-input25000000.txt" PHP k-nucleotide
+	sudo ../../RAPL/main "php -d memory_limit=1024M knucleotide.php-4.php 0 < ../../knucleotide-input25000000.txt" PHP7 k-nucleotide
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${php_8_path} -d memory_limit=1024M knucleotide.php-4.php 0 < ../../knucleotide-input25000000.txt" PHP8 k-nucleotide
+
+
+compile:
 
 run:
 	php -d memory_limit=1024M knucleotide.php-4.php 0 < ../../knucleotide-input25000000.txt

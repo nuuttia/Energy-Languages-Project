@@ -1,12 +1,23 @@
-compile:
+java8_path = /usr/local/jdk1.8.0_121/bin/
+java_library_path = $(shell pwd)
+compileOld:
 	cp pidigits.java-2.java pidigits.java
-	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/javac -d .  pidigits.java
-xmeasure:
-	sudo modprobe msr
-	sudo ../../RAPL/main "/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java -Djava.library.path=Include/java  pidigits 10000" Java pidigits
+	/usr/local/jdk1.8.0_121/bin/javac -d .  pidigits.java
 
+compileNew:
+	cp pidigits.java-2.java pidigits.java
+	javac -d .  pidigits.java
+
+measureOld:
+	sudo modprobe msr
+	sudo ../../RAPL/main "/usr/local/jdk1.8.0_121/bin/java   pidigits 10000" Java8 pidigits
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "java -Djava.library.path=Include/java pidigits 10000" Java19 pidigits
+	
 run:
-	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java -Djava.library.path=Include/java  pidigits 10000
+	/usr/local/jdk1.8.0_121/bin/java -Djava.library.path=Include/java  pidigits 10000
 
 mem:
 	/usr/bin/time -v /home/andremalheiro/Documentos/jdk1.8.0_121/bin/java -Djava.library.path=Include/java  pidigits 10000

@@ -1,8 +1,16 @@
+php_8_path = /usr/local/php-8.2.1/bin/php
+
+measureOld:
+	sudo modprobe msr
+	sudo ../../RAPL/main "php mandelbrot.php-3.php 16000" PHP7 mandelbrot
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${php_8_path} mandelbrot.php-3.php 16000" PHP8 mandelbrot
+
+
 compile:
 
-measure:
-	sudo modprobe msr
-	sudo ../../RAPL/main "php  mandelbrot.php-3.php 16000" PHP mandelbrot
 
 run:
 	php --enable-shmop mandelbrot.php-3.php 16000

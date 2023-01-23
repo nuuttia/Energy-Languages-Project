@@ -1,8 +1,17 @@
+lua_5_3 = /usr/local/lua_local/bin/lua
+lua_5_4 = /usr/local/lua-5.4.4/bin/lua
+
+measureOld:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${lua_5_3}  nbody.lua-2.lua 50000000" Lua5_3 n-body
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${lua_5_4}  nbody.lua-2.lua 50000000" Lua5_4 n-body
+
+
 compile:
 
-measure:
-	sudo modprobe msr
-	sudo ../../RAPL/main "~/lua_local/bin/lua  nbody.lua-2.lua 50000000" Lua n-body
 
 run:
 	~/lua_local/bin/lua  nbody.lua-2.lua 50000000

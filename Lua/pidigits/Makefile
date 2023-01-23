@@ -1,8 +1,16 @@
-compile:
+lua_5_3 = /usr/local/lua_local/bin/lua
+lua_5_4 = /usr/local/lua-5.4.4/bin/lua
 
-xmeasure:
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "~/lua_local/bin/lua  pidigits.lua-5.lua 10000" Lua pidigits
+	sudo ../../RAPL/main "${lua_5_3}  pidigits.lua-5.lua 10000" Lua5_3 pidigits
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${lua_5_4}  pidigits.lua-5.lua 10000" Lua5_4 pidigits
+
+
+compile:
 
 run:
 	~/lua_local/bin/lua  pidigits.lua-5.lua 10000

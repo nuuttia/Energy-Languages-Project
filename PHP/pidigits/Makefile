@@ -1,8 +1,15 @@
-compile:
+php_8_path = /usr/local/php-8.2.1/bin/php
 
-xmeasure:
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "php -n  pidigits.php-5.php 10000" PHP pidigits
+	sudo ../../RAPL/main "php -n  pidigits.php-5.php 10000" PHP7 pidigits
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${php_8_path} -n  pidigits.php-5.php 10000" PHP8 pidigits
+
+
+compile:
 
 run:
 	php -n  pidigits.php-5.php 10000

@@ -1,9 +1,20 @@
-compile:
+java8_path = /home/andremalheiro/Documentos/jdk1.8.0_121/bin/
+
+compileOld:
 	cp spectralnorm.java-2.java spectralnorm.java
-	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/javac -d .  spectralnorm.java
-measure:
+	${java8_path}javac -d .  spectralnorm.java
+
+compileNew:
+	cp spectralnorm.java-2.java spectralnorm.java
+	javac -d .  spectralnorm.java
+
+measureOld:
 	sudo modprobe msr
-	sudo ../../RAPL/main "/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   spectralnorm 5500" Java spectral-norm
+	sudo ../../RAPL/main "${java8_path}java spectralnorm 5500" Java8 spectral-norm
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "java spectralnorm 5500" Java19 spectral-norm
 
 run:
 	/home/andremalheiro/Documentos/jdk1.8.0_121/bin/java   spectralnorm 5500

@@ -1,8 +1,17 @@
+lua_5_3 = /usr/local/lua_local/bin/lua
+lua_5_4 = /usr/local/lua-5.4.4/bin/lua
+
+measureOld:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${lua_5_3}  fasta.lua-3.lua 25000000" Lua5_3 fasta
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${lua_5_4}  fasta.lua-3.lua 25000000" Lua5_4 fasta
+
+
 compile:
 
-measure:
-	sudo modprobe msr
-	sudo ../../RAPL/main "~/lua_local/bin/lua  fasta.lua-3.lua 25000000" Lua fasta
 
 run:
 	~/lua_local/bin/lua  fasta.lua-3.lua 25000000

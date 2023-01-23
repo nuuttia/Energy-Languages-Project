@@ -1,9 +1,16 @@
+jruby_9_1_7_path = /usr/local/jruby-9.1.7.0/bin/jruby
+jruby_9_4_path = /usr/local/jruby-9.4.0.0/bin/jruby
+
+measureOld:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${jruby_9_1_7_path} -Xcompile.fastest=true -Xcompile.invokedynamic=true -J-server -J-Xmn512m -J-Xms2048m -J-Xmx2048m revcomp.rb 0 < ../../revcomp-input25000000.txt" JRuby9_1 reverse-complement
+
+measureNew:
+	sudo modprobe msr
+	sudo ../../RAPL/main "${jruby_9_4_path} -Xcompile.fastest=true -Xcompile.invokedynamic=true -J-server -J-Xmn512m -J-Xms2048m -J-Xmx2048m revcomp.rb 0 < ../../revcomp-input25000000.txt" JRuby9_4 reverse-complement
+
 compile:
 	cp revcomp.jruby revcomp.rb
-
-measure:
-	sudo modprobe msr
-	sudo ../../RAPL/main "/usr/local/jruby-9.1.7.0/bin/jruby -Xcompile.fastest=true -Xcompile.invokedynamic=true -J-server -J-Xmn512m -J-Xms2048m -J-Xmx2048m revcomp.rb 0 < ../../revcomp-input25000000.txt" JRuby reverse-complement
 
 run:
 	/usr/local/jruby-9.1.7.0/bin/jruby -Xcompile.fastest=true -Xcompile.invokedynamic=true -J-server -J-Xmn512m -J-Xms2048m -J-Xmx2048m revcomp.rb 0 < ../../revcomp-input25000000.txt
