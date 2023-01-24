@@ -7,7 +7,7 @@ measure:
 	sudo ../../RAPL/main "node --use_strict binarytrees.typescript-2.js 21" TypeScript binary-trees
 
 run:
-	node --use_strict binarytrees.typescript-2.js 21
+	/usr/local/node-v7.9.0-linux-x86/bin/node --use_strict binarytrees.typescript-2.js 21
 
 clean:
 	rm -rf *.js *.ts
