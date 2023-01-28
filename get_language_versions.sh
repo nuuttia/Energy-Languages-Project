@@ -182,3 +182,6 @@ wget https://download.visualstudio.microsoft.com/download/pr/40bc5873-1a39-4a47-
 sudo mkdir /usr/local/dotnet-6.0.404
 tar -xf  dotnet-sdk-6.0.404-linux-x64.tar.gz -C /usr/local/dotnet-6.0.404
 rm dotnet-sdk-6.0.404-linux-x64.tar.gz
+
+#Python modules
+pip install -r requirements.txt
