@@ -16,10 +16,11 @@ Next, we explain the folder structure and how to specify, for each language benc
 
 #### The Structure
 The main folder contains 32 elements: 
-1. 28 sub-folders (one for each of the considered languages); each folder contains a sub-folder for each considered benchmark.
+1. 13 sub-folders (one for each of the considered languages); each folder contains a sub-folder for each considered benchmark.
 2. A `Python` script `compile_all.py`, capable of building, running and measuring the energy and memory usage of every benchmark in all considered languages.
 3. A `RAPL` sub-folder, containing the code of the energy measurement framework.
 4. A `Bash` script `gen-input.sh`, used to generate the input files for 3 benchmarks: `k-nucleotide`, `reverse-complement`, and `regex-redux`.
+5. 4. A `Bash` script `get_language_version.sh`, used to config the computer environment with every language versions.
 
 Basically, the directories tree will look something like this:
 
@@ -63,6 +64,10 @@ Taking the `C` language as an example, this is how the folder for the `binary-tr
 
 ```
 
+### Set Up
+
+In order to configure the computer and install the language/compilers/interpreters versions used in the research, the user only needs to execute the *get_language_versions* `Bash` script with sudo permissions.
+
 #### The Operations
 
 Each benchmark sub-folder, included in a language folder, contains a `Makefile`.
@@ -72,9 +77,15 @@ Basically, each `Makefile` **must** contains 4 rules, one for each operations:
 
 | Rule | Description |
 | -------- | -------- |
-| `compile` | This rule specifies how the benchmark should be compiled in the considered language; Interpreted languages don't need it, so it can be left blank in such cases. |
-| `run` | This rule specifies how the benchmark should be executed; It is used to test whether the benchmark runs with no errors, and the output is the expected. |
-| `measure` | This rule shows how to use the framework included in the `RAPL` folder to measure the energy of executing the task specified in the `run` rule. |
+| `compile` | ONLY USED FOR LANGUAGES THAT DO NOT HAVE AN OUTDATED VERSION INSTALLED. This rule specifies how the benchmark should be compiled in the considered language; Interpreted languages don't need it, so it can be left blank in such cases. |
+| `compileOld` | This rule specifies how the benchmark should be compiled using the outdated in the considered language; Interpreted languages don't need it, so it can be left blank in such cases. |
+| `compileNew` | This rule specifies how the benchmark should be compiled using the up-to-date compiler in the considered language; Interpreted languages don't need it, so it can be left blank in such cases. |
+| `run` | ONLY USED FOR LANGUAGES THAT DO NOT HAVE AN OUTDATED VERSION INSTALLED.This rule specifies how the benchmark should be executed; It is used to test whether the benchmark runs with no errors, and the output is the expected. |
+| `runOld` | This rule specifies how the benchmark should be executed; It is used to test with the outdated version whether the benchmark runs with no errors, and the output is the expected. |
+| `runNew` | This rule specifies how the benchmark should be executed; It is used to test with the up-to-date version whether the benchmark runs with no errors, and the output is the expected. |
+| `measure` | ONLY USED FOR LANGUAGES THAT DO NOT HAVE AN OUTDATED VERSION INSTALLED. This rule shows how to use the framework included in the `RAPL` folder to measure the energy of executing the task specified in the `run` rule. |
+| `measureOld` | This rule shows how to use the framework included in the `RAPL` folder to measure the energy of the outdated version executing the task specified in the `run` rule. |
+| `measureNew` | This rule shows how to use the framework included in the `RAPL` folder to measure the energy of the up-to-date version executing the task specified in the `run` rule. |
 | `mem` | Similar to `measure`, this rule executes the task specified in the `run` rule but with support for memory peak detection. |
 
 To better understand it, here's the `Makefile` for the `binary-trees` benchmark in the `C` language:

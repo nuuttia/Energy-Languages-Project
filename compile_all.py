@@ -43,9 +43,9 @@ if __name__ == '__main__':
   if len(sys.argv) >= 2:
     act = sys.argv[1]
     directory_to_search = ""
-    if len(sys.argv) >= 2:
+    if len(sys.argv) > 2:
       directory_to_search = sys.argv[2]
-    if (act == 'compile') | (act == 'run') | (act == 'clean') | (act == 'measure'):
+    if (act == 'compile') | (act == 'run') | (act == 'clean') | (act == 'measure') |(act == 'compileOld') |(act == 'compileNew')| (act == 'measureOld')| (act == 'measureNew'):
       color_print('Performing \"' + act + '\" action...', color='yellow', bold=True)
       action = act
     else:
